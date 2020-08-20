@@ -44,7 +44,7 @@ class LinkedList:
             # Set self.tail to None
             self.tail = None
             # Decrement length by 1
-            self.length -= 1
+            self.length = self.length - 1
             return current_head.value
         # If head (General case):
         else:
@@ -52,7 +52,7 @@ class LinkedList:
             current_head = self.head
             self.head = current_head.next
             #  Return current_head.value
-            self.length -= 1
+            self.length = self.length - 1
             return current_head.value
 
     def remove_tail(self):
@@ -87,3 +87,9 @@ class LinkedList:
             current_node.next = None
             self.length -= 1
             return current_tail.value  # assertEqual to tail value
+
+    def append(self, value):
+        self.add_to_tail(value)
+
+    def pop(self):
+        return self.remove_tail()
