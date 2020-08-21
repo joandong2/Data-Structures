@@ -87,3 +87,51 @@ class LinkedList:
             current_node.next = None
             self.length -= 1
             return current_tail.value  # assertEqual to tail value
+
+    def add_to_head(self, value):
+        pass
+        # check if theres a head
+        # if no head/empty list:
+        if self.head is None:
+            # create new node
+            # set with next to None
+            new_node = Node(value, None)
+            self.head = new_node
+            # set self.tail = new NOde
+            self.tail = new_node
+            self.length += 1
+        # if theres a head
+        else:
+            # create a new node
+            # set new node.next to current_head/self.head
+            new_node = Node(value, self.head)
+            # set self.head = new_node
+            self.head = new_node
+            # length
+            self.length += 1
+
+    def remove_at_index(self, index):
+        # remove at index i:
+        # check length > i, if not return None
+        if index >= self.length:
+            return None
+        if self.length == 1 and index == 0:
+            target = self.head
+            self.head = None
+            self.tail = None
+            self.length -= 1
+            return target.value
+        #     self.remove_tail()
+        # iterate through the loop i times
+        prev_node = self.head
+        for i in range(index - 1):
+            # this will get us to prev_node points to the node before the target node
+            prev_node = prev_node.next
+
+        target = prev_node.next
+        prev_node.next = target.next
+        target.next = None
+
+        self.length -= 1
+
+        return target.value

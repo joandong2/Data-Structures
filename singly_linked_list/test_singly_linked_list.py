@@ -38,6 +38,18 @@ class LinkedListTests(unittest.TestCase):
         self.assertIsNone(self.list.tail)
         self.assertIsNone(self.list.remove_tail())
 
+    def test_remove_at_index(self):
+        self.list.add_to_tail(30)
+        self.list.add_to_tail(40)
+        self.list.add_to_tail(50)
+        self.assertEqual(self.list.remove_at_index(1), 40)
+
+        self.list.add_to_tail(100)
+        self.assertEqual(self.list.remove_at_index(2), 100)
+        # self.assertIsNone(self.list.head)
+        # self.assertIsNone(self.list.tail)
+        self.assertIsNone(self.list.remove_at_index(3), None)
+
 
 if __name__ == '__main__':
     unittest.main()
