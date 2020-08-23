@@ -242,6 +242,7 @@ class DoublyLinkedList:
             # compare current_max to each value and update current_max if value > current_max
             if current_max < current_node.value:
                 current_max = current_node.value
-            # current_max = max(current_max, current_node.value)
+            # Move current_node forward
+            current_node = current_node.next
         # return current_max
         return current_max
