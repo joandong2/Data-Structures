@@ -61,11 +61,11 @@ class BSTNode:
             # return False
             if self.right is None:
                 return False
-            else:
-                return self.right.contains(target)
             # Else:
             # Do the same thing
             # return node.right.contains(target)
+            else:
+                return self.right.contains(target)
 
         # Else if target < node.value
         elif target < self.value:
@@ -81,27 +81,79 @@ class BSTNode:
                 # return node.left.contains(target)
                 return self.left.contains(target)
 
-            # Return the maximum value found in the tree
+    # Return the maximum value found in the tree
     def get_max(self):
-        current_node = self
-        while current_node.right is not None:
-            current_node = current_node.right
-        return current_node.value
+        if self.right is None:
+            return self.value
+        else:
+            current_node = self  # top of the tree as current node
+            while current_node.right is not None:
+                current_node = current_node.right
+            return current_node.value
 
+    # set the fn to every  value, if self.left === for_each
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
+        # call function on the current value
+        # start at root, call the fn on it
+        fn(self.value)
+
+        # go left, call for_each on the left tree, children
+        if self.left is not None:
+            self.left.for_each(fn)
+        # go right call for_each on the right tree, children
+        if self.right is not None:
+            self.right.for_each(fn)
+
+    # Stack
+    def for_each_iterative(self, fn):
+        # start at root
+        # cur_node = self
+        # # push it on to the stack, use stack made in last module
+        # stack = Stack()
+        # stack.push(cur_node)
+
+        # # while stack is not empty:
+        # while len(stack) > 0:
+        #     cur_node = stack.pop()
+        #     # push right
+        #     if cur_node.right is not None:
+        #         stack.push(cur_node.right)
+        #     # push left
+        #     if cur_node.left is not None:
+        #         stack.push(cur_node.left)
+        #     # call the fn
+        #     fn(cur_node.value)
         pass
+
+    def breadth_first_traversal(self, fn):
+        pass
+        # start at teh root
+        # push it on the queue
+
+        # while queue is not empty
+        # cur_node = remove from teh queue
+        # add cur_node children to the queue
+        # process queue
 
     # Part 2 -----------------------
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self):
-        pass
+        if self.left is not None:
+            self.left.in_order_print()
+        print(self.value)
+        if self.right is not None:
+            self.right.in_order_print()
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self):
+        # create a queue for nodes
+        # add the first node from the queue
+        # print the removed node
+        # add all chidren in the queue
         pass
 
     # Print the value of every node, starting with the given node,
